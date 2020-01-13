@@ -3,7 +3,7 @@ package enigma;
 /** Class that represents a reflector in the enigma.
  *  @author
  */
-public class Reflector extends Rotor {  //héritage inutile => ici spécialisation
+public class Reflector extends SuperRefRot {  //héritage inutile => ici spécialisation
 	
 	int[] reflection;
 	
@@ -17,21 +17,19 @@ public class Reflector extends Rotor {  //héritage inutile => ici spécialisation
 	}
 	
 	Reflector(int[] r){
-		super(r,0);     //variable qui n'est pas utilisée
+                super();     //variable qui n'est pas utilisée
 		reflection = r; 
 	}
         
+   
+    @Override
     public int convertForward(int p) {
         return ((reflection[((p)%26+26)%26])%26+26)%26;
     }
 //Surchage inutiles
-    @Override
-    public int convertBackward(int unused) {
-        throw new UnsupportedOperationException();
-    }
+    //Création d'une classe de generalisation dont hérite la classe Reflector
 
-    @Override
-    public void advance() {
-    }
+    
+    
 
 }
