@@ -14,7 +14,7 @@ public class Machine {
 		rightRotor = right;
 	}
 
-	public void setPositions(String setting) {
+	public void setPositions(String setting) {      //mauvais nommage (confond la fonction avec un setter)
 		char[] charSettings = setting.toCharArray();
 		reflector.setPosition(Rotor.toIndex(charSettings[0]));
 		leftRotor.setPosition(Rotor.toIndex(charSettings[1]));
@@ -57,7 +57,7 @@ public class Machine {
 		boolean advanceLeft = false;
 		boolean advanceMiddle = false;
 		boolean advanceRight = true;
-		if (leftRotor.atNotch()) {
+		if (leftRotor.atNotch()) {      //condition vide
 		}
 		if (middleRotor.atNotch()) {
 			advanceMiddle = true;

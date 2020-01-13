@@ -44,15 +44,15 @@ public class Rotor {
 		createBCipher();
 	}
 
-    public int convertForward(int p) {
+    public int convertForward(int p) {  // roue quand la lettre va vers le centre
         return ((cipher[((p+position)%26+26)%26]-position)%26+26)%26;
     }
 
-    public int convertBackward(int e) {
+    public int convertBackward(int e) { // roue quand la lettre va vers l'extérieur
         return ((bcipher[((e+position)%26+26)%26]-position)%26+26)%26;
     }
     
-    public void advance() {
+    public void advance() { //doit être uniquement accessible à l'ordinateur (pas public) + constante = 26
         position = (position+1) % 26;
     }
     
@@ -60,7 +60,7 @@ public class Rotor {
         return (position == notch1 || position == notch2);
     }
 
-    protected static char toLetter(int p) {
+    protected static char toLetter(int p) {     // alourdi le serveur pour rien (pas de static)
         return (char)(p + 'A');
     }
 
