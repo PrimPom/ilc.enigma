@@ -37,5 +37,18 @@ public class MachineTest {
 		String actual = m.convert(msg2);
 		assertEquals(expected, actual);
 	}
+        
+        
+        @Test
+	/**
+	 * This is more a validation tests, than an unit test
+	 */
+	public void checkRotorPos() {
+		Machine m = new Machine();
+		Main.configure(m, config);
+		int actual=m.getLeftRotor().getPosition();
+                int expected=23;
+		assertEquals(expected, actual);
+	}
 
 }

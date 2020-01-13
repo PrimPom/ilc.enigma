@@ -7,14 +7,20 @@ public class Machine {
 	private Rotor rightRotor;
 	private Reflector reflector;
 
+        public Rotor getLeftRotor(){
+            return leftRotor;
+        }
+        public Rotor getRightRotor(){
+            return rightRotor;
+        }
 	public void initRotors(Reflector reflector, Rotor left, Rotor middle, Rotor right) {
 		this.reflector = reflector;
 		leftRotor = left;
 		middleRotor = middle;
 		rightRotor = right;
 	}
-
-	public void setPositions(String setting) {      //mauvais nommage (confond la fonction avec un setter)
+        //Plus pratique de nommer la fonction initPositions pour eviter les erreurs de confusion
+	public void initPositions(String setting) {      //mauvais nommage (confond la fonction avec un setter)
 		char[] charSettings = setting.toCharArray();
 		reflector.setPosition(Rotor.toIndex(charSettings[0]));
 		leftRotor.setPosition(Rotor.toIndex(charSettings[1]));
@@ -24,7 +30,7 @@ public class Machine {
 	
 	public void configure(Reflector reflector, Rotor left, Rotor middle, Rotor right, String setting) {
 		this.initRotors(reflector, left, middle, right);
-		this.setPositions(setting);
+		this.initPositions(setting);
 
 	}
 
@@ -57,23 +63,24 @@ public class Machine {
 		boolean advanceLeft = false;
 		boolean advanceMiddle = false;
 		boolean advanceRight = true;
-		if (leftRotor.atNotch()) {      //condition vide
-		}
+		//if (leftRotor.atNotch()) {      //condition vide
+		//}
 		if (middleRotor.atNotch()) {
 			advanceMiddle = true;
 			advanceLeft = true;
 		}
-		if (rightRotor.atNotch()) {
+               if (rightRotor.atNotch()) {
 			advanceMiddle = true;
 			advanceRight = true;
 		}
+                
 		if (advanceLeft) {
 			leftRotor.advance();
-		}
-		if (advanceRight) {
+		} 
+                if (advanceRight) {
 			rightRotor.advance();
 		}
-		if (advanceMiddle) {
+                if (advanceMiddle) {
 			middleRotor.advance();
 		}
 	}

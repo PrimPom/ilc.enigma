@@ -3,10 +3,12 @@ package enigma;
 public class Rotor {
 
     private int position;
-    private int[] cipher = new int[26];
-    private int[] bcipher = new int[26];
+    final int CONSTANTE=26;
+    private int[] cipher = new int[CONSTANTE];
+    private int[] bcipher = new int[CONSTANTE];
     private int notch1 = -1;
     private int notch2 = -1;
+    
 
     public int getPosition() {
         return position;
@@ -45,15 +47,15 @@ public class Rotor {
 	}
 
     public int convertForward(int p) {  // roue quand la lettre va vers le centre
-        return ((cipher[((p+position)%26+26)%26]-position)%26+26)%26;
+        return ((cipher[((p+position)%CONSTANTE+CONSTANTE)%CONSTANTE]-position)%CONSTANTE+CONSTANTE)%CONSTANTE;
     }
 
     public int convertBackward(int e) { // roue quand la lettre va vers l'extérieur
-        return ((bcipher[((e+position)%26+26)%26]-position)%26+26)%26;
+        return ((bcipher[((e+position)%CONSTANTE+CONSTANTE)%CONSTANTE]-position)%CONSTANTE+CONSTANTE)%CONSTANTE;
     }
     
-    public void advance() { //doit être uniquement accessible à l'ordinateur (pas public) + constante = 26
-        position = (position+1) % 26;
+    protected void advance() { //doit être uniquement accessible à l'ordinateur (pas public) + constante = 26
+        position = (position+1) % CONSTANTE;
     }
     
     protected boolean atNotch() {
@@ -69,7 +71,7 @@ public class Rotor {
     }
     
 	private void createBCipher() {
-		for(int i =0; i<26; i++)
+		for(int i =0; i<CONSTANTE; i++)
 			bcipher[cipher[i]] = i;
 	}
 
